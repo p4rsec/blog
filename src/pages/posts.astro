@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Header } from "../components/Header";
 import { BlogList } from "../components/BlogList";
 import { Navigation } from "../components/Navigation";
 
@@ -8,18 +7,14 @@ import { Navigation } from "../components/Navigation";
 const posts = [
   {
     title: "Hello World",
-    date: "2025-10-18",
+    date: "2024-12-25",
     slug: "hello-world",
     excerpt: "My first post on this blog.",
   },
 ];
 ---
 
-<Layout title="p4rsec's Blog">
-  <Navigation currentPath="/" />
-  <Header
-    title="p4rsec"
-    subtitle="I am Prakash, software engineer from Bangalore, India"
-  />
+<Layout title="Posts - p4rsec's Blog">
+  <Navigation currentPath="/posts" />
   <BlogList posts={posts} />
 </Layout>

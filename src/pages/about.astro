@@ -1,0 +1,39 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { TerminalWindow } from "../components/TerminalWindow";
+import { Navigation } from "../components/Navigation";
+---
+
+<Layout title="About - p4rsec's Blog">
+  <Navigation currentPath="/about" />
+
+  <section class="container mx-auto px-4 py-8">
+    <TerminalWindow title="cat about.txt" className="max-w-4xl mx-auto">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-text">$</span>
+          <span class="text-terminal-text">cat about.txt</span>
+        </div>
+
+        <div class="border-l-2 border-terminal-border pl-4">
+          <div class="text-terminal-text/60 text-sm mb-4">
+            # About p4rsec's Blog
+          </div>
+
+          <div class="text-terminal-text">
+            I am Prakash, software engineer from Bangalore, India. I work on
+            React for frontend and Go/Node.js for backend. Currently learning
+            DevOps stuff. I write about frontend development, backend
+            architecture, and whatever I'm learning in DevOps.
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-text">$</span>
+          <span class="text-terminal-text animate-pulse terminal-cursor">_</span
+          >
+        </div>
+      </div>
+    </TerminalWindow>
+  </section>
+</Layout>

@@ -1,0 +1,128 @@
+---
+import "../styles/global.css";
+import { ViewTransitions } from "astro:transitions";
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Blog - p4rsec" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body class="h-full bg-terminal-bg text-terminal-text font-terminal">
+    <div id="matrix-rain" class="matrix-rain" transition:persist></div>
+    <div class="min-h-screen bg-terminal-bg">
+      <slot />
+    </div>
+    <script is:inline>
+      // Only initialize once
+      if (!window.matrixRainInitialized) {
+        window.matrixRainInitialized = true;
+        // Matrix rain effect
+        function createMatrixRain() {
+          const matrixRain = document.getElementById("matrix-rain");
+          if (!matrixRain) {
+            return;
+          }
+
+          const canvas = document.createElement("canvas");
+          const ctx = canvas.getContext("2d");
+
+          if (!ctx) {
+            return;
+          }
+
+          // Set canvas styles
+          canvas.style.position = "fixed";
+          canvas.style.top = "0";
+          canvas.style.left = "0";
+          canvas.style.width = "100%";
+          canvas.style.height = "100%";
+          canvas.style.pointerEvents = "none";
+          canvas.style.zIndex = "1";
+          canvas.style.opacity = "0.3";
+
+          // Append canvas to the matrix rain div
+          matrixRain.appendChild(canvas);
+
+          // Set canvas size
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+
+          // Matrix characters
+          const matrix =
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+          const matrixArray = matrix.split("");
+
+          const fontSize = 10;
+          const columns = canvas.width / fontSize;
+
+          // Initialize drops array
+          const drops = [];
+          for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+          }
+
+          function draw() {
+            if (!ctx) return;
+
+            // Clear canvas with semi-transparent black
+            ctx.fillStyle = "rgba(13, 2, 8, 0.04)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Set text properties
+            ctx.fillStyle = "#00FF41";
+            ctx.font = fontSize + "px monospace";
+
+            // Draw falling characters
+            for (let i = 0; i < drops.length; i++) {
+              const text =
+                matrixArray[Math.floor(Math.random() * matrixArray.length)];
+              ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+              // Reset drop when it reaches bottom
+              if (
+                drops[i] * fontSize > canvas.height &&
+                Math.random() > 0.975
+              ) {
+                drops[i] = 0;
+              }
+              drops[i]++;
+            }
+          }
+
+          // Start animation
+          const interval = setInterval(draw, 35);
+
+          // Handle window resize
+          window.addEventListener("resize", () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+          });
+
+          // Cleanup function
+          return () => {
+            clearInterval(interval);
+          };
+        }
+
+        // Initialize matrix rain when DOM is loaded
+        document.addEventListener("DOMContentLoaded", () => {
+          createMatrixRain();
+        });
+      }
+    </script>
+  </body>
+</html>
