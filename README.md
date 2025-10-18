@@ -1,43 +1,127 @@
-# Astro Starter Kit: Minimal
+# p4rsec
 
-```sh
-npm create astro@latest -- --template minimal
+A blog built with Astro, React, TypeScript, and Tailwind CSS, featuring a retro terminal aesthetic.
+
+## Tech Stack
+
+- **Astro** - Static site generation
+- **React** - Interactive components
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling with custom terminal theme
+- **HTML5 Canvas** - Terminal rain effect
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd blog
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+2. Install dependencies:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+3. Start the development server:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+npm run dev
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+4. Open your browser and navigate to `http://localhost:4321`
 
-## 🧞 Commands
+### Available Scripts
 
-All commands are run from the root of the project, from a terminal:
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run astro` - Run Astro CLI commands
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Project Structure
 
-## 👀 Want to learn more?
+```
+src/
+├── components/          # React components
+│   ├── TerminalWindow.tsx
+│   ├── Header.tsx
+│   ├── BlogPost.tsx
+│   ├── BlogList.tsx
+│   └── Navigation.tsx
+├── layouts/            # Astro layouts
+│   └── Layout.astro
+├── pages/             # Astro pages
+│   ├── index.astro
+│   ├── about.astro
+│   ├── posts.astro
+│   └── posts/          # Individual blog posts
+├── styles/            # Global styles
+│   └── global.css
+└── public/            # Static assets
+    └── favicon.svg
+```
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Customization
+
+### Colors
+
+The terminal theme uses CSS custom properties defined in `src/styles/global.css`:
+
+```css
+:root {
+  --terminal-green: #00ff41;
+  --terminal-dark-green: #008f11;
+  --terminal-bg: #0d0208;
+  --terminal-text: #00ff41;
+  --terminal-accent: #008f11;
+  --terminal-border: #003b00;
+}
+```
+
+### Tailwind Configuration
+
+Custom colors and animations are defined in `tailwind.config.mjs`:
+
+```javascript
+colors: {
+  terminal: {
+    green: '#00FF41',
+    'dark-green': '#008F11',
+    bg: '#0D0208',
+    text: '#00FF41',
+    accent: '#008F11',
+    border: '#003B00',
+  }
+}
+```
+
+## Adding New Posts
+
+1. Create a new file in `src/pages/posts/`
+2. Use the existing post structure as a template
+3. Update the posts array in `index.astro` and `posts.astro`
+
+## Matrix Rain Effect
+
+The matrix rain effect is implemented using HTML5 Canvas and JavaScript. It creates falling green characters in the background, reminiscent of classic terminal interfaces.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).
