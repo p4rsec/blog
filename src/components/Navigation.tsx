@@ -1,4 +1,9 @@
 import React from "react";
+import { BlinkingCursor } from "./BlinkingCursor";
+import {
+  isTerminalWindowEnabled,
+  isTerminalShadowEnabled,
+} from "../config/terminal";
 
 interface NavigationProps {
   currentPath?: string;
@@ -13,10 +18,16 @@ export const Navigation: React.FC<NavigationProps> = ({
     { label: "About", path: "/about", command: "cat about.txt" },
   ];
 
+  const terminalClasses = isTerminalWindowEnabled()
+    ? "bg-terminal-bg border"
+    : "";
+
+  const shadowClasses = isTerminalShadowEnabled() ? "shadow-terminal" : "";
+
   return (
     <nav className="container mx-auto px-4 py-4">
       <div className="max-w-4xl mx-auto">
-        <div className="bg-terminal-bg border shadow-terminal">
+        <div className={`${terminalClasses} ${shadowClasses}`}>
           {/* <div className="bg-terminal-border/20 border-b px-4 py-2">
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -66,12 +77,7 @@ export const Navigation: React.FC<NavigationProps> = ({
               })}
             </div>
 
-            <div className="flex items-center space-x-2 mt-4">
-              <span className="text-terminal-text">$</span>
-              <span className="text-terminal-text animate-pulse terminal-cursor">
-                _
-              </span>
-            </div>
+            <BlinkingCursor className="mt-4" />
           </div>
         </div>
       </div>

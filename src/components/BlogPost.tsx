@@ -1,5 +1,6 @@
 import React from "react";
 import { TerminalWindow } from "./TerminalWindow";
+import { BlinkingCursor } from "./BlinkingCursor";
 
 interface BlogPostProps {
   title: string;
@@ -34,12 +35,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
             <div className="text-terminal-text">{content}</div>
           </div>
 
-          <div className="flex items-center space-x-2">
-            <span className="text-terminal-text">$</span>
-            <span className="text-terminal-text animate-pulse terminal-cursor">
-              _
-            </span>
-          </div>
+          <BlinkingCursor />
         </div>
       </TerminalWindow>
     </article>

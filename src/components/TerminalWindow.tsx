@@ -1,4 +1,8 @@
 import React from "react";
+import {
+  isTerminalWindowEnabled,
+  isTerminalShadowEnabled,
+} from "../config/terminal";
 
 interface TerminalWindowProps {
   title?: string;
@@ -11,8 +15,14 @@ export const TerminalWindow: React.FC<TerminalWindowProps> = ({
   children,
   className = "",
 }) => {
+  const terminalClasses = isTerminalWindowEnabled()
+    ? "bg-terminal-bg border"
+    : "";
+
+  const shadowClasses = isTerminalShadowEnabled() ? "shadow-terminal" : "";
+
   return (
-    <div className={`bg-terminal-bg border shadow-terminal ${className}`}>
+    <div className={`${terminalClasses} ${shadowClasses} ${className}`}>
       {/* Terminal Header */}
       {/* <div className="bg-terminal-border/20 border-b px-4 py-2 flex items-center">
         <div className="flex space-x-2">

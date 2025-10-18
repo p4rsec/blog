@@ -1,5 +1,6 @@
 import React from "react";
 import { TerminalWindow } from "./TerminalWindow";
+import { BlinkingCursor } from "./BlinkingCursor";
 
 interface BlogPost {
   title: string;
@@ -38,7 +39,7 @@ export const BlogList: React.FC<BlogListProps> = ({ posts }) => {
             {posts.map((post, index) => (
               <div
                 key={post.slug}
-                className="border-l-2/30 pl-4 py-2 transition-colors"
+                className="border-l-2 border-terminal-border/30 pl-4 py-2 transition-colors"
               >
                 <div className="text-terminal-text/60 text-sm mb-1">
                   -rw-r--r-- 1 p4rsec p4rsec{" "}
@@ -68,12 +69,7 @@ export const BlogList: React.FC<BlogListProps> = ({ posts }) => {
             ))}
           </div>
 
-          <div className="flex items-center space-x-2">
-            <span className="text-terminal-text">$</span>
-            <span className="text-terminal-text animate-pulse terminal-cursor">
-              _
-            </span>
-          </div>
+          <BlinkingCursor />
         </div>
       </TerminalWindow>
     </section>

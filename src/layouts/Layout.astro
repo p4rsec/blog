@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import { ViewTransitions } from "astro:transitions";
+import { isMatrixRainEnabled } from "../config/terminal";
 
 export interface Props {
   title: string;
@@ -22,11 +23,11 @@ const { title, description = "Blog - p4rsec" } = Astro.props;
     <ViewTransitions />
   </head>
   <body class="h-full bg-terminal-bg text-terminal-text font-terminal">
-    <div id="matrix-rain" class="matrix-rain" transition:persist></div>
+    {isMatrixRainEnabled() && <div id="matrix-rain" class="matrix-rain" transition:persist></div>}
     <div class="min-h-screen bg-terminal-bg">
       <slot />
     </div>
-    <script is:inline>
+    {isMatrixRainEnabled() && <script is:inline>
       // Only initialize once
       if (!window.matrixRainInitialized) {
         window.matrixRainInitialized = true;
@@ -123,6 +124,6 @@ const { title, description = "Blog - p4rsec" } = Astro.props;
           createMatrixRain();
         });
       }
-    </script>
+    </script>}
   </body>
 </html>

@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { TerminalWindow } from "../components/TerminalWindow";
 import { Navigation } from "../components/Navigation";
+import { BlinkingCursor } from "../components/BlinkingCursor";
 ---
 
 <Layout title="About - p4rsec's Blog">
@@ -28,11 +29,7 @@ import { Navigation } from "../components/Navigation";
           </div>
         </div>
 
-        <div class="flex items-center space-x-2">
-          <span class="text-terminal-text">$</span>
-          <span class="text-terminal-text animate-pulse terminal-cursor">_</span
-          >
-        </div>
+        <BlinkingCursor client:load />
       </div>
     </TerminalWindow>
   </section>

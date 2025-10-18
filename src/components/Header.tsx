@@ -1,5 +1,6 @@
 import React from "react";
 import { TerminalWindow } from "./TerminalWindow";
+import { BlinkingCursor } from "./BlinkingCursor";
 
 interface HeaderProps {
   title: string;
@@ -13,7 +14,7 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
         <div className="space-y-4">
           <div className="flex items-center space-x-2">
             <span className="text-terminal-text">$</span>
-            <span className="text-terminal-text animate-pulse">whoami</span>
+            <span className="text-terminal-text">whoami</span>
           </div>
           <div className="text-terminal-text">
             <div className="text-2xl font-bold text-terminal-text mb-2">
@@ -43,12 +44,7 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
             </div>
           </div> */}
 
-          <div className="flex items-center space-x-2">
-            <span className="text-terminal-text">$</span>
-            <span className="text-terminal-text animate-pulse terminal-cursor">
-              _
-            </span>
-          </div>
+          <BlinkingCursor />
         </div>
       </TerminalWindow>
     </header>
