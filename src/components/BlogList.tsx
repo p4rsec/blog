@@ -25,14 +25,14 @@ export const BlogList: React.FC<BlogListProps> = ({ posts }) => {
 
           <div className="text-terminal-text/60 text-sm mb-4">
             <div>total {posts.length}</div>
-            <div>
+            {/* <div>
               drwxr-xr-x 2 p4rsec p4rsec 4096 Dec 25 00:00{" "}
               <span className="text-terminal-text">.</span>
             </div>
             <div>
               drwxr-xr-x 2 p4rsec p4rsec 4096 Dec 25 00:00{" "}
               <span className="text-terminal-text">..</span>
-            </div>
+            </div> */}
           </div>
 
           <div className="space-y-2">
@@ -41,13 +41,13 @@ export const BlogList: React.FC<BlogListProps> = ({ posts }) => {
                 key={post.slug}
                 className="border-l-2 border-terminal-border/30 pl-4 py-2 transition-colors"
               >
-                <div className="text-terminal-text/60 text-sm mb-1">
+                {/* <div className="text-terminal-text/60 text-sm mb-1">
                   -rw-r--r-- 1 p4rsec p4rsec{" "}
                   {Math.floor(Math.random() * 5000 + 1000)} Dec 25 00:00
                   <span className="text-terminal-text ml-2">
                     {post.slug}.md
                   </span>
-                </div>
+                </div> */}
                 <div className="text-terminal-text font-bold mb-1">
                   {post.title}
                 </div>
