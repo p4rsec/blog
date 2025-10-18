@@ -10,6 +10,16 @@
   --terminal-border: #003B00;
 }
 
+/* Light Theme */
+[data-theme="light"] {
+  --terminal-green: #059669;
+  --terminal-dark-green: #047857;
+  --terminal-bg: #ffffff;
+  --terminal-text: #1f2937;
+  --terminal-accent: #059669;
+  --terminal-border: #d1d5db;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -36,6 +46,44 @@ body {
   z-index: 1;
   opacity: 0.3;
 }
+
+/* Light theme - reduce matrix rain opacity */
+[data-theme="light"] .matrix-rain {
+  opacity: 0.1;
+}
+
+/* Theme switcher colors using CSS custom properties */
+.theme-switcher {
+  --switcher-border: var(--terminal-border);
+  --switcher-icon-bg: var(--terminal-bg);
+  --switcher-icon-border: var(--terminal-border);
+  --switcher-hover-border: var(--terminal-border);
+  --switcher-focus-ring: var(--terminal-accent);
+}
+
+[data-theme="light"] .theme-switcher {
+  --switcher-border: #f97316;
+  --switcher-icon-bg: #ffffff;
+  --switcher-icon-border: #f97316;
+  --switcher-hover-border: #ea580c;
+  --switcher-focus-ring: #f97316;
+}
+
+/* Custom focus ring for theme switcher */
+.theme-switcher:focus {
+  box-shadow: 0 0 0 2px var(--switcher-focus-ring);
+}
+
+/* Fix focus ring color for light theme */
+[data-theme="light"] .theme-switcher:focus {
+  box-shadow: 0 0 0 2px #f97316;
+}
+
+/* Ensure theme switcher icon has proper border */
+.theme-switcher > div {
+  border: 1px solid var(--switcher-icon-border);
+}
+
 
 /* Terminal cursor blink */
 @keyframes blink {
@@ -89,5 +137,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
+  background: var(--terminal-dark-green);
+}
+
+/* Light theme scrollbar adjustments */
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: var(--terminal-green);
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
   background: var(--terminal-dark-green);
 }

@@ -5,8 +5,8 @@ import { Navigation } from "../components/Navigation";
 import { getCollection } from "astro:content";
 
 // Get all blog posts dynamically
-const allPosts = await getCollection('blog');
-const posts = allPosts.map(post => ({
+const allPosts = await getCollection("blog");
+const posts = allPosts.map((post) => ({
   title: post.data.title,
   date: post.data.pubDate,
   slug: post.id,
@@ -15,6 +15,6 @@ const posts = allPosts.map(post => ({
 ---
 
 <Layout title="Posts - p4rsec's Blog">
-  <Navigation currentPath="/posts" />
+  <Navigation currentPath="/posts" client:load />
   <BlogList posts={posts} />
 </Layout>

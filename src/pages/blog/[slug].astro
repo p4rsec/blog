@@ -23,7 +23,7 @@ const { Content } = await post.render();
 ---
 
 <Layout title={`${post.data.title} - p4rsec's Blog`}>
-  <Navigation currentPath="/posts" />
+  <Navigation currentPath="/posts" client:load />
   <section class="container mx-auto px-4 py-8">
     <div class="max-w-4xl mx-auto">
       <div

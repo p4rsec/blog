@@ -1,5 +1,6 @@
 import React from "react";
 import { BlinkingCursor } from "./BlinkingCursor";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 import {
   isTerminalWindowEnabled,
   isTerminalShadowEnabled,
@@ -42,9 +43,12 @@ export const Navigation: React.FC<NavigationProps> = ({
           </div> */}
 
           <div className="p-4 font-mono text-sm">
-            <div className="flex items-center space-x-2 mb-4">
-              <span className="text-terminal-text">$</span>
-              <span className="text-terminal-text">which navigation</span>
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center space-x-2">
+                <span className="text-terminal-text">$</span>
+                <span className="text-terminal-text">which navigation</span>
+              </div>
+              <ThemeSwitcher />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

@@ -20,10 +20,29 @@ const { title, description = "Blog - p4rsec" } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
+    <!-- Theme initialization script to prevent flash - must run before any rendering -->
+    <script is:inline>
+      (function() {
+        // Get theme from localStorage or default to dark
+        const theme = localStorage.getItem('p4rsec-blog-theme') || 'dark';
+
+        // Set theme attribute immediately
+        document.documentElement.setAttribute('data-theme', theme);
+
+        // Add a class to indicate theme is initialized
+        document.documentElement.classList.add('theme-initialized');
+
+        // Also set a CSS custom property for immediate styling
+        document.documentElement.style.setProperty('--initial-theme', theme);
+      })();
+    </script>
+
     <ViewTransitions />
   </head>
   <body class="h-full bg-terminal-bg text-terminal-text font-terminal">
     {isMatrixRainEnabled() && <div id="matrix-rain" class="matrix-rain" transition:persist></div>}
+
     <div class="min-h-screen bg-terminal-bg">
       <slot />
     </div>
@@ -83,12 +102,13 @@ const { title, description = "Blog - p4rsec" } = Astro.props;
           function draw() {
             if (!ctx) return;
 
-            // Clear canvas with semi-transparent black
-            ctx.fillStyle = "rgba(13, 2, 8, 0.04)";
+            // Clear canvas with semi-transparent background
+            const isLightTheme = document.documentElement.getAttribute('data-theme') === 'light';
+            ctx.fillStyle = isLightTheme ? "rgba(255, 255, 255, 0.04)" : "rgba(13, 2, 8, 0.04)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Set text properties
-            ctx.fillStyle = "#00FF41";
+            ctx.fillStyle = isLightTheme ? "#059669" : "#00FF41";
             ctx.font = fontSize + "px monospace";
 
             // Draw falling characters

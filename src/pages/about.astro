@@ -7,7 +7,7 @@ import { isTerminalWindowEnabled } from "../config/terminal";
 ---
 
 <Layout title="About - p4rsec's Blog">
-  <Navigation currentPath="/about" />
+  <Navigation currentPath="/about" client:load />
 
   <section class="container mx-auto px-4 py-8">
     <TerminalWindow title="cat about.txt" className="max-w-4xl mx-auto">
