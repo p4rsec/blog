@@ -64,9 +64,9 @@ export const Navigation: React.FC<NavigationProps> = ({
                       {item.command}
                     </div>
                     <div
-                      className={`text-terminal-text font-bold ${
+                      className={`text-terminal-text ${
                         isActive
-                          ? "text-terminal-text underline decoration-terminal-border underline-offset-4"
+                          ? "text-terminal-text underline decoration-terminal-border underline-offset-4 font-bold"
                           : "text-terminal-text/80"
                       }`}
                     >

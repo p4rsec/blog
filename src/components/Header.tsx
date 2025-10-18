@@ -47,12 +47,12 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle }) => {
               </div>
               <div>
                 <a
-                  href="https://twitter.com/_prakashgamit"
+                  href="https://twitter.com/_p4rsec"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-terminal-text transition-colors"
                 >
-                  → https://twitter.com/_prakashgamit
+                  → https://twitter.com/_p4rsec
                 </a>
               </div>
             </div>
