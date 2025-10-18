@@ -30,9 +30,13 @@ export const ThemeSwitcher: React.FC = () => {
     setCurrentTheme(newTheme);
   };
 
-  // Don't render anything until theme is determined
+  // Don't render anything until theme is determined, but reserve space to prevent layout shift
   if (!isThemeReady) {
-    return null;
+    return (
+      <div className="w-12 h-6" aria-hidden="true">
+        {/* Reserved space to prevent layout shift */}
+      </div>
+    );
   }
 
   return (
