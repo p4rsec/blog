@@ -21,5 +21,8 @@ export default defineConfig({
     define: {
       global: "globalThis",
     },
+    ssr: {
+      external: ["node:path", "node:fs/promises", "node:url", "node:crypto"],
+    },
   },
 });
