@@ -38,7 +38,7 @@ export const BlogList: React.FC<BlogListProps> = ({ posts }) => {
             {posts.map((post, index) => (
               <div
                 key={post.slug}
-                className="border-l-2 border-terminal-border/30 pl-4 py-2 hover:border-terminal-border transition-colors"
+                className="border-l-2/30 pl-4 py-2 transition-colors"
               >
                 <div className="text-terminal-text/60 text-sm mb-1">
                   -rw-r--r-- 1 p4rsec p4rsec{" "}

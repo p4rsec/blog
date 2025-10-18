@@ -26,7 +26,7 @@ export const BlogPost: React.FC<BlogPostProps> = ({
             <span className="text-terminal-text">cat posts/{slug}.md</span>
           </div>
 
-          <div className="border-l-2 border-terminal-border pl-4">
+          <div className="border-l-2 pl-4">
             <div className="text-terminal-text/60 text-sm mb-2"># {title}</div>
             <div className="text-terminal-text/40 text-xs mb-4">
               Published: {date}
