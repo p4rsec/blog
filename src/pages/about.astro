@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { TerminalWindow } from "../components/TerminalWindow";
 import { Navigation } from "../components/Navigation";
 import { BlinkingCursor } from "../components/BlinkingCursor";
+import { isTerminalWindowEnabled } from "../config/terminal";
 ---
 
 <Layout title="About - p4rsec's Blog">
@@ -11,12 +12,14 @@ import { BlinkingCursor } from "../components/BlinkingCursor";
   <section class="container mx-auto px-4 py-8">
     <TerminalWindow title="cat about.txt" className="max-w-4xl mx-auto">
       <div class="space-y-4">
-        <div class="flex items-center space-x-2">
+        <!-- <div class="flex items-center space-x-2">
           <span class="text-terminal-text">$</span>
           <span class="text-terminal-text">cat about.txt</span>
-        </div>
+        </div> -->
 
-        <div class="border-l-2 pl-4">
+        <div
+          class={`${isTerminalWindowEnabled() ? "border-l-2 border-terminal-border pl-4" : ""}`}
+        >
           <div class="text-terminal-text/60 text-sm mb-4">
             # About p4rsec's Blog
           </div>

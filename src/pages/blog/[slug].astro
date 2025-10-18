@@ -1,0 +1,59 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+import { Navigation } from "../../components/Navigation";
+import { BlinkingCursor } from "../../components/BlinkingCursor";
+import {
+  isTerminalWindowEnabled,
+  isTerminalShadowEnabled,
+} from "../../config/terminal";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={`${post.data.title} - p4rsec's Blog`}>
+  <Navigation currentPath="/posts" />
+  <section class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+      <div
+        class={`${isTerminalWindowEnabled() ? "bg-terminal-bg border border-terminal-border" : ""} ${isTerminalShadowEnabled() ? "shadow-terminal" : ""}`}
+      >
+        <div class="p-4 font-mono text-sm">
+          <div class="space-y-4">
+            <div class="flex items-center space-x-2">
+              <span class="text-terminal-text">$</span>
+              <span class="text-terminal-text">cat blog/{post.id}.md</span>
+            </div>
+
+            <div
+              class={`${isTerminalWindowEnabled() ? "border-l-2 border-terminal-border pl-4" : ""}`}
+            >
+              <div class="text-terminal-text/60 text-sm mb-2">
+                # {post.data.title}
+              </div>
+              <div class="text-terminal-text/40 text-xs mb-4">
+                Published: {post.data.pubDate.toLocaleDateString()}
+              </div>
+              <div class="text-terminal-text prose prose-invert max-w-none">
+                <Content />
+              </div>
+            </div>
+
+            <BlinkingCursor client:load />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

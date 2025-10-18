@@ -3,16 +3,16 @@ import Layout from "../layouts/Layout.astro";
 import { Header } from "../components/Header";
 import { BlogList } from "../components/BlogList";
 import { Navigation } from "../components/Navigation";
+import { getCollection } from "astro:content";
 
-// Blog posts data
-const posts = [
-  {
-    title: "Hello World",
-    date: "2025-10-18",
-    slug: "hello-world",
-    excerpt: "My first post on this blog.",
-  },
-];
+// Get all blog posts dynamically
+const allPosts = await getCollection("blog");
+const posts = allPosts.map((post) => ({
+  title: post.data.title,
+  date: post.data.pubDate,
+  slug: post.id,
+  excerpt: post.data.description || "No description available.",
+}));
 ---
 
 <Layout title="p4rsec's Blog">

@@ -8,8 +8,8 @@ Edit `src/config/terminal.ts` to enable/disable features:
 
 ### `enableTerminalWindow: boolean`
 
-- Controls terminal window styling (background, borders)
-- When `false`: Removes terminal background and borders
+- Controls terminal window styling (background, borders, left borders)
+- When `false`: Removes terminal background, borders, and left borders throughout the site
 - Default: `true`
 
 ### `enableBlinkingCursor: boolean`
@@ -61,7 +61,18 @@ import { BlinkingCursor } from "./BlinkingCursor";
 
 ## Effects
 
-- **All enabled**: Full terminal aesthetic with matrix rain
-- **Terminal disabled**: Clean, minimal design
+- **All enabled**: Full terminal aesthetic with matrix rain, borders, and blinking cursors
+- **Terminal disabled**: Clean, minimal design without any terminal styling
 - **Matrix rain disabled**: Terminal styling without background animation
-- **Cursor disabled**: Static cursor without blinking animation
+- **Cursor disabled**: No blinking cursors anywhere on the site
+- **Shadow disabled**: Terminal windows without glow effects
+
+## Components Affected
+
+- **TerminalWindow**: Uses terminal and shadow configs
+- **Navigation**: Uses terminal and shadow configs
+- **BlogList**: Uses cursor config
+- **BlogPost**: Uses cursor config
+- **About page**: Uses terminal and cursor configs
+- **Blog post pages**: Uses terminal, shadow, and cursor configs
+- **Layout**: Uses matrix rain config

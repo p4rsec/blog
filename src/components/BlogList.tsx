@@ -4,7 +4,7 @@ import { BlinkingCursor } from "./BlinkingCursor";
 
 interface BlogPost {
   title: string;
-  date: string;
+  date: string | Date;
   slug: string;
   excerpt: string;
 }
@@ -52,14 +52,16 @@ export const BlogList: React.FC<BlogListProps> = ({ posts }) => {
                   {post.title}
                 </div>
                 <div className="text-terminal-text/60 text-sm mb-2">
-                  {post.date}
+                  {post.date instanceof Date
+                    ? post.date.toLocaleDateString()
+                    : String(post.date)}
                 </div>
                 <div className="text-terminal-text/80 text-sm">
                   {post.excerpt}
                 </div>
                 <div className="text-terminal-text/40 text-xs mt-2">
                   <a
-                    href={`/posts/${post.slug}`}
+                    href={`/blog/${post.slug}`}
                     className="hover:text-terminal-text transition-colors"
                   >
                     → Read more
