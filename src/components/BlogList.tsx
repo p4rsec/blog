@@ -16,11 +16,11 @@ interface BlogListProps {
 export const BlogList: React.FC<BlogListProps> = ({ posts }) => {
   return (
     <section className="container mx-auto px-4 py-8">
-      <TerminalWindow title="ls -la posts/" className="max-w-4xl mx-auto">
+      <TerminalWindow title="ls -l posts/" className="max-w-4xl mx-auto">
         <div className="space-y-4">
           <div className="flex items-center space-x-2">
             <span className="text-terminal-text">$</span>
-            <span className="text-terminal-text">ls -la posts/</span>
+            <span className="text-terminal-text">ls -l posts/</span>
           </div>
 
           <div className="text-terminal-text/60 text-sm mb-4">
