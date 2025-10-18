@@ -1,6 +1,8 @@
 import React from "react";
 import { BlinkingCursor } from "./BlinkingCursor";
 import { ThemeSwitcher } from "./ThemeSwitcher";
+import { GitHubIcon } from "./GitHubIcon";
+import { TwitterIcon } from "./TwitterIcon";
 import {
   isTerminalWindowEnabled,
   isTerminalShadowEnabled,
@@ -48,7 +50,30 @@ export const Navigation: React.FC<NavigationProps> = ({
                 <span className="text-terminal-text">$</span>
                 <span className="text-terminal-text">which navigation</span>
               </div>
-              <ThemeSwitcher />
+              <div className="flex items-center space-x-3">
+                {/* Social Links */}
+                <a
+                  href="https://github.com/p4rsec"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-terminal-text/60 hover:text-terminal-text transition-colors duration-200"
+                  aria-label="GitHub Profile"
+                  title="GitHub Profile"
+                >
+                  <GitHubIcon />
+                </a>
+                <a
+                  href="https://twitter.com/_p4rsec"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-terminal-text/60 hover:text-terminal-text transition-colors duration-200"
+                  aria-label="Twitter Profile"
+                  title="Twitter Profile"
+                >
+                  <TwitterIcon />
+                </a>
+                <ThemeSwitcher />
+              </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
