@@ -43,9 +43,9 @@ export const Navigation: React.FC<NavigationProps> = ({
                   <a
                     key={item.path}
                     href={item.path}
-                    className={`block p-3 border border-terminal-border/30 hover:border-terminal-border transition-all ${
+                    className={`block transition-all ${
                       isActive
-                        ? "border-terminal-border bg-terminal-border/10"
+                        ? "bg-terminal-border/10"
                         : "hover:bg-terminal-border/5"
                     }`}
                   >
@@ -55,7 +55,7 @@ export const Navigation: React.FC<NavigationProps> = ({
                     <div
                       className={`text-terminal-text font-bold ${
                         isActive
-                          ? "text-terminal-text"
+                          ? "text-terminal-text underline decoration-terminal-border underline-offset-4"
                           : "text-terminal-text/80"
                       }`}
                     >
