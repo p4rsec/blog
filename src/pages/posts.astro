@@ -4,14 +4,16 @@ import { BlogList } from "../components/BlogList";
 import { Navigation } from "../components/Navigation";
 import { getCollection } from "astro:content";
 
-// Get all blog posts dynamically
+// Get all blog posts dynamically and sort by date (reverse chronological)
 const allPosts = await getCollection("blog");
-const posts = allPosts.map((post) => ({
-  title: post.data.title,
-  date: post.data.pubDate,
-  slug: post.id,
-  excerpt: post.data.description || "No description available.",
-}));
+const posts = allPosts
+  .map((post) => ({
+    title: post.data.title,
+    date: post.data.pubDate,
+    slug: post.id,
+    excerpt: post.data.description || "No description available.",
+  }))
+  .sort((a, b) => b.date.getTime() - a.date.getTime());
 ---
 
 <Layout title="Posts - p4rsec's Blog">
